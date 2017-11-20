@@ -17,11 +17,15 @@
 
 package com.schedjoules.eventdiscovery.framework.common;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import com.schedjoules.eventdiscovery.R;
 import com.schedjoules.eventdiscovery.framework.utils.colors.AttributeColor;
 import com.schedjoules.eventdiscovery.framework.utils.colors.Transparent;
+
+import gk.android.investigator.Investigator;
 
 
 /**
@@ -40,4 +44,24 @@ public abstract class BaseFragment extends Fragment
         new StatusBar(getActivity()).update(enabled ?
                 Transparent.INSTANCE : new AttributeColor(getContext(), R.attr.colorPrimaryDark));
     }
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        Investigator.log(this, "savedState", savedInstanceState);
+        Investigator.log(this, "args", getArguments());
+    }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle outState)
+    {
+        super.onSaveInstanceState(outState);
+        Investigator.log(this, "outState", outState);
+        Investigator.log(this, "args", getArguments());
+    }
+
+
 }
