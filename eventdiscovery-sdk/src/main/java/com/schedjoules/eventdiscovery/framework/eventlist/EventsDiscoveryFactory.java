@@ -99,6 +99,8 @@ public final class EventsDiscoveryFactory implements Factory<EventsDiscovery>
             query = query.withGeoLocation(mLocation.value(), 10000 /*meters*/);
         }
 
+        query = query.withResultsLimit(40);
+
         return query;
     }
 }
